@@ -26,7 +26,7 @@ const Transaction = mongoose.Schema(
 			enum: currency,
 			default: 'USD',
 		},
-		date: {
+		created: {
 			type: Date,
 			default: Date.now,
 		},
