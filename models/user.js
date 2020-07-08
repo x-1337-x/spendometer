@@ -29,7 +29,7 @@ const User = mongoose.Schema(
 
 User.pre('save', function (next) {
 	if (!this.isModified('password') || !this.created) {
-		hashPwd(this.pwd)
+		hashPwd(this.password)
 			.then((hash) => {
 				this.created = Date.now();
 				this.password = hash;
