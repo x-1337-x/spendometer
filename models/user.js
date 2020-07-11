@@ -41,8 +41,8 @@ User.pre('save', function (next) {
 	}
 });
 
-User.methods.comparePassword = function (pwd) {
-	return bcrypt.compare(pwd, this.password);
+User.methods.comparePassword = function (password, cb) {
+	return bcrypt.compare(password, this.password);
 };
 
 module.exports = mongoose.model('User', User);
