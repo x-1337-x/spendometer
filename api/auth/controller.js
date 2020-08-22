@@ -91,9 +91,26 @@ const login = (req, res) => {
 	});
 };
 
+const validate = (req, res) => {
+	const { token } = req.body;
+
+	jwt.verify(token, secret, (err, decoded) => {
+		if (err) {
+			return res.json({ success: false, err: err.message });
+		}
+
+		const payload = { userId: decoded.userId };
+
+		const token = jwt.sign(payload, secret, jwtOptions);
+
+		res.send({ success: true, token });
+	});
+};
+
 module.exports = {
 	regUserValidation,
 	loginUserValidation,
 	register,
 	login,
+	validate,
 };
